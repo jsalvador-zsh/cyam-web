@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import LogoCyam from '../assets/logo.png';
+
+---
+
+<footer class="bg-white rounded-lg m-4">
+    <div class="w-full max-w-6xl mx-auto py-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <Image src={LogoCyam} class="h-8 w-auto" alt="CYAM S.R.L. Logo" />
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm md:text-base font-medium text-gray-500 sm:mb-0">
+                <li>
+                    <a href="/about" class="me-4 md:me-6">Sobre nosotros</a>
+                </li>
+                <li>
+                    <a href="/services" class="me-4 md:me-6">Servicios</a>
+                </li>
+                <li>
+                    <a href="/contact" class="">Contacto</a>
+                </li>
+            </ul>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center">© 2025 <a href="https://flowbite.com/" class="hover:underline">CYAM S.R.L.</a> Todos los derechos reservados.</span>
+    </div>
+</footer>
+

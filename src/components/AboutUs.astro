@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import ImageCalibracion from '../assets/calibracion.jpg';
+import ImageMantenimiento from '../assets/mantenimiento.png';
+import ImageFabricacion from '../assets/fabricacion.jpg';
+
+import ImageISO from '../assets/iso.png';
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  highlights?: Array<{
+    title: string;
+    description: string;
+    icon?: string;
+  }>;
+}
+
+const {
+  title = "Sobre CYAM",
+  subtitle = "Certificación y Aseguramiento Metrológico",
+  description = '"Calibración de confianza para un aseguramiento metrológico impecable."',
+  highlights = [
+    {
+      title: "Personal calificado",
+      description: "Contamos con un equipo técnico altamente competente y comprometido con la calidad.",
+      icon: "team"
+    },
+    {
+      title: "Patrones certificados",
+      description: "Nuestros patrones están calibrados por el INACAL y organismos acreditados internacionalmente.",
+      icon: "certificate"
+    },
+    {
+      title: "Normativa vigente",
+      description: "Cumplimos estrictamente con los requisitos de la norma NTP ISO/IEC 17025.",
+      icon: "standard"
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="py-12 sm:py-24 bg-white">
+  <div class="container mx-auto px-5 max-w-6xl">
+    {/* Encabezado */}
+    <div class="text-center mb-12 md:mb-16">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        {title} <span class="text-[#31A4EA]/80">{subtitle}</span>
+      </h1>
+      <p class="max-w-3xl mx-auto text-lg text-gray-600 italic">
+        {description}
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-6 items-center">
+      {/* Contenido destacado */}
+      <div class="lg:w-1/2">
+        <div class="grid md:grid-cols-2 gap-6">
+          {highlights.map((highlight, index) => (
+            <div 
+              class="bg-gray-50 p-6 rounded-xl hover:bg-blue-50 transition-all duration-300"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div class="flex items-center gap-4 mb-4">
+                {highlight.icon === "team" && (
+                  <div class="p-3 bg-blue-100 rounded-lg text-[#31A4EA]/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                )}
+                {highlight.icon === "certificate" && (
+                  <div class="p-3 bg-blue-100 rounded-lg text-[#31A4EA]/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                )}
+                {highlight.icon === "standard" && (
+                  <div class="p-3 bg-blue-100 rounded-lg text-[#31A4EA]/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                )}
+                <h3 class="text-xl font-semibold text-gray-900">{highlight.title}</h3>
+              </div>
+              <p class="text-gray-600">{highlight.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Normativa ISO */}
+        <div class="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-6">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="flex-shrink-0">
+              <Image src={ImageISO} alt="Norma ISO/IEC 17025" class="h-24 w-auto" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">Norma NTP ISO/IEC 17025</h3>
+              <p class="text-gray-600">
+                Nuestro laboratorio tiene implementado el sistema de gestión bajo la norma NTP ISO/IEC 17025, 
+                garantizando nuestra competencia técnica y asegurando que nuestros procesos cumplen con los 
+                estándares internacionales requeridos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Imagen del laboratorio */}
+            <div class="lg:w-1/2 space-y-6" data-aos="fade-left">
+              {[ImageCalibracion, ImageFabricacion, ImageMantenimiento].map((img, i) => (
+                <div class="relative rounded-2xl overflow-hidden shadow-lg">
+                  <Image src={img} alt={`Imagen ${i}`} class="w-full h-64 object-cover" loading="lazy" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-blue-900/10"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm">
+                    <p class="text-sm font-medium">
+                      {["Calibración", "Fabricación", "Mantenimiento"][i]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+    </div>
+  </div>
+</section>

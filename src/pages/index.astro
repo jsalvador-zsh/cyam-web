@@ -1,0 +1,49 @@
+---
+import AboutUs from "../components/AboutUs.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Navbar from "../components/Navbar.astro";
+import StatsWithIcons from "../components/StatsWithIcons.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+	title="Inicio"
+	description="Somos una empresa que se dedica a brindar servicios de calibración de equipos e instrumentos de laboratorio e industria. Tenemos establecido un sistema de gestión de acuerdo a la NTP-ISO/IEC 17025 con la finalidad de garantizar resultados de calidad, confiables y reproducibles."
+>
+	<Navbar />
+	<Hero
+		title="Precisión metrológica"
+		,
+		description="Más de 10 años garantizando la exactitud en calibración de equipos de medición industrial con trazabilidad internacional."
+	/>
+	<StatsWithIcons
+		iconCards={[
+			{
+				icon: "calibration",
+				title: "Tecnología de Punta",
+				description:
+					"Equipos de última generación para calibraciones precisas",
+			},
+			{
+				icon: "traceability",
+				title: "Certificaciones",
+				description:
+					"Acreditados por los principales organismos nacionales",
+			},
+			{
+				icon: "industry",
+				title: "Sectores Atendidos",
+				description: "Alimenticio, farmacéutico, minero e industrial",
+			},
+		]}
+		stats={[
+			{ number: 10, suffix: "+", label: "Años de experiencia" },
+			{ number: 8, label: "Laboratorios especializados" },
+			{ number: 1000, suffix: "+", label: "Equipos calibrados" },
+		]}
+		backgroundColor="blue-50"
+	/>
+	<Footer />
+</Layout>

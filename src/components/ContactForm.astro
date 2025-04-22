@@ -1,0 +1,440 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 transition:name='contact-us' class="mb-6 text-4xl sm:text-5xl md:text-6xl leading-[1.2] tracking-tight font-semibold text-center text-gray-900">Solicita una <span class="text-[#31A4EA]/80">cotización</span></h1>
+    <p class="text-sm sm:text-base leading-relaxed tracking-tight text-center text-gray-600">Completa el formulario y nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
+  <form 
+    id="formCotizacion" 
+    name="formCotizacion" 
+    onsubmit="prepareMailto(event)"
+    class="bg-white rounded-lg shadow-lg mt-8 p-6 md:p-8"
+  >
+    <!-- 1. DATOS DEL CLIENTE -->
+    <div class="mb-6">
+      <div class="mb-4">
+        <h4 class="font-semibold text-[#31A4EA]/80 mr-2">1. Datos del cliente</h4>
+        <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Envíanos la información solicitada para poder responder a tu solicitud.</span>
+      </div>
+      
+      <div class="space-y-4">
+        <input type="hidden" id="codigo" name="codigo" value="24">
+        
+        <input 
+          type="text" 
+          id="razonsocial" 
+          name="razonsocial" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Razón social *" 
+          required
+        >
+        
+        <input 
+          type="text" 
+          id="ruc" 
+          name="ruc" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="RUC *" 
+          maxlength="11" 
+          required
+        >
+        
+        <input 
+          type="text" 
+          id="direccion" 
+          name="direccion" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Dirección"
+        >
+      </div>
+    </div>
+
+    <!-- 2. CONTACTO -->
+    <div class="mb-6">
+      <div class="mb-4">
+        <h4 class="font-semibold text-[#31A4EA]/80 mr-2">2. Contacto</h4>
+        <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Datos de la persona que solicita</span>
+      </div>
+      
+      <div class="space-y-4">
+        <input 
+          type="text" 
+          id="nombres" 
+          name="nombres" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Nombres *" 
+          required
+        >
+        
+        <input 
+          type="text" 
+          id="apellidos" 
+          name="apellidos" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Apellidos *" 
+          required
+        >
+        
+        <input 
+          type="tel" 
+          id="celular" 
+          name="celular" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Celular *" 
+          maxlength="9" 
+          required
+        >
+        
+        <input 
+          type="email" 
+          id="correo" 
+          name="correo" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Correo electrónico *" 
+          required
+        >
+      </div>
+    </div>
+
+    <!-- 3. INFORMACIÓN DEL SERVICIO -->
+    <div class="mb-6">
+        <div class="mb-4">
+            <h4 class="font-semibold text-[#31A4EA]/80 mr-2">3. Información del servicio</h4>
+        <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Lugar de ejecución del servicio</span>
+      </div>
+      
+      <div class="flex flex-wrap gap-6 mb-4">
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            name="lugar" 
+            value="LOJUSTO" 
+            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            required
+          >
+          <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">CYAM S.R.L.</span>
+        </label>
+        
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            name="lugar" 
+            value="Instalaciones del Cliente" 
+            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            required
+          >
+          <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">Instalaciones del cliente</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 4. DATOS PARA LA EMISIÓN DEL CERTIFICADO -->
+    <div class="mb-6">
+      <div class="mb-4">
+        <h4 class="font-semibold text-[#31A4EA]/80">4. Datos para la emisión del certificado</h4>
+      </div>
+      
+      <div class="flex flex-wrap gap-6 mb-4">
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            name="mismosDatos" 
+            id="siDatos" 
+            value="siUsar" 
+            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            onclick="toggleCertificadoDatos(false)"
+            checked
+          >
+          <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">Si, usar los mismos datos.</span>
+        </label>
+        
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            name="mismosDatos" 
+            id="noDatos" 
+            value="noUsar" 
+            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            onclick="toggleCertificadoDatos(true)"
+          >
+          <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">No, usar datos distintos.</span>
+        </label>
+      </div>
+      
+      <div id="certificadoDatos" class="hidden space-y-4">
+        <input 
+          type="text" 
+          id="razonsocial2" 
+          name="razonsocial2" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Razón social"
+        >
+        
+        <input 
+          type="text" 
+          id="ruc2" 
+          name="ruc2" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="RUC" 
+          maxlength="11"
+        >
+        
+        <input 
+          type="text" 
+          id="direccion2" 
+          name="direccion2" 
+          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          placeholder="Dirección"
+        >
+      </div>
+    </div>
+
+    <!-- 5. INSTRUMENTOS DE MEDIDA -->
+    <div class="mb-6">
+      <div class="flex items-center mb-4">
+        <h4 class="font-semibold text-[#31A4EA]/80 mr-4">6. Instrumentos de medida</h4>
+        <button 
+          type="button" 
+          id="addButton" 
+          class="px-3 py-1 bg-[#31A4EA] text-white rounded-lg hover:bg-[#31A4EA]/80 focus:outline-none focus:ring-1 focus:ring-[#31A4EA] focus:ring-opacity-50"
+          title="Agregar Instrumento"
+          onclick="addInstrumento()"
+        >
+          +
+        </button>
+      </div>
+      
+      <!-- Array de Instrumentos -->
+      <div id="instrumentosContainer" class="space-y-4">
+        <div class="instrumento bg-gray-50 p-4 rounded-lg">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="md:col-span-4">
+              <input 
+                type="text" 
+                name="nombre[]" 
+                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                placeholder="Nombre del instrumento *" 
+                required
+              >
+            </div>
+            <div>
+              <input 
+                type="text" 
+                name="marca[]" 
+                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                placeholder="Marca *" 
+                required
+              >
+            </div>
+            <div>
+              <input 
+                type="text" 
+                name="modelo[]" 
+                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                placeholder="Modelo *" 
+                required
+              >
+            </div>
+            <div>
+              <input 
+                type="number" 
+                name="maximo[]" 
+                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                placeholder="Alcance Máximo *" 
+                required
+              >
+            </div>
+            <div>
+              <input 
+                type="number" 
+                name="minimo[]" 
+                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                placeholder="División Mínima *" 
+                required
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de envío -->
+    <div class="flex flex-wrap gap-4 mt-8">
+      <button 
+        type="submit" 
+        class="px-6 py-3 bg-blue-700 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-opacity-50 transition-colors hover:cursor-pointer"
+      >
+        Enviar Solicitud
+      </button>
+      
+      <button 
+        type="button" 
+        onclick="resetForm()"
+        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-opacity-50 transition-colors hover:cursor-pointer"
+      >
+        Limpiar Formulario
+      </button>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  // Función para mostrar/ocultar datos de certificado
+  function toggleCertificadoDatos(show) {
+    const certificadoDatos = document.getElementById('certificadoDatos');
+    if (show) {
+      certificadoDatos.classList.remove('hidden');
+      document.getElementById('razonsocial2').required = true;
+      document.getElementById('ruc2').required = true;
+    } else {
+      certificadoDatos.classList.add('hidden');
+      document.getElementById('razonsocial2').required = false;
+      document.getElementById('ruc2').required = false;
+    }
+  }
+
+  // Función para agregar instrumentos
+  function addInstrumento() {
+    const container = document.getElementById('instrumentosContainer');
+    const newInstrumento = document.createElement('div');
+    newInstrumento.className = 'instrumento bg-gray-50 p-4 rounded-lg';
+    newInstrumento.innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="md:col-span-4">
+          <input 
+            type="text" 
+            name="nombre[]" 
+            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            placeholder="Nombre del instrumento *" 
+            required
+          >
+        </div>
+        <div>
+          <input 
+            type="text" 
+            name="marca[]" 
+            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            placeholder="Marca *" 
+            required
+          >
+        </div>
+        <div>
+          <input 
+            type="text" 
+            name="modelo[]" 
+            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            placeholder="Modelo *" 
+            required
+          >
+        </div>
+        <div>
+          <input 
+            type="number" 
+            name="maximo[]" 
+            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent  text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            placeholder="Alcance Máximo *" 
+            required
+          >
+        </div>
+        <div>
+          <input 
+            type="number" 
+            name="minimo[]" 
+            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            placeholder="División Mínima *" 
+            required
+          >
+        </div>
+      </div>
+      <button 
+        type="button" 
+        onclick="this.parentElement.remove()" 
+        class="mt-2 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-red-500 focus:ring-opacity-50 text-sm"
+      >
+        Eliminar
+      </button>
+    `;
+    container.appendChild(newInstrumento);
+  }
+
+  // Función para resetear el formulario
+  function resetForm() {
+    if (confirm('¿Estás seguro de que deseas limpiar todo el formulario?')) {
+      document.getElementById('formCotizacion').reset();
+      const instrumentosContainer = document.getElementById('instrumentosContainer');
+      while (instrumentosContainer.children.length > 1) {
+        instrumentosContainer.lastChild.remove();
+      }
+      document.getElementById('certificadoDatos').classList.add('hidden');
+    }
+  }
+
+  // Función para preparar el mailto
+  function prepareMailto(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = {};
+    
+    // Recopilar todos los datos del formulario
+    for (const [key, value] of formData.entries()) {
+      if (key.endsWith('[]')) {
+        const baseKey = key.slice(0, -2);
+        if (!data[baseKey]) data[baseKey] = [];
+        data[baseKey].push(value);
+      } else {
+        data[key] = value;
+      }
+    }
+    
+    // Construir el asunto del correo
+    const subject = `Solicitud de cotización - ${data.razonsocial || ''}`;
+    
+    // Construir el cuerpo del correo
+    let body = `Nueva solicitud de cotización:\n\n`;
+    body += `=== DATOS DEL CLIENTE ===\n`;
+    body += `Razón Social: ${data.razonsocial || 'No proporcionado'}\n`;
+    body += `RUC: ${data.ruc || 'No proporcionado'}\n`;
+    body += `Dirección: ${data.direccion || 'No proporcionado'}\n\n`;
+    
+    body += `=== DATOS DE CONTACTO ===\n`;
+    body += `Nombre: ${data.nombres || 'No proporcionado'} ${data.apellidos || ''}\n`;
+    body += `Celular: ${data.celular || 'No proporcionado'}\n`;
+    body += `Correo: ${data.correo || 'No proporcionado'}\n\n`;
+    
+    body += `=== INFORMACIÓN DEL SERVICIO ===\n`;
+    body += `Lugar de ejecución: ${data.lugar || 'No especificado'}\n\n`;
+    
+    if (data.mismosDatos === 'noUsar') {
+      body += `=== DATOS PARA CERTIFICADO (distintos) ===\n`;
+      body += `Razón Social: ${data.razonsocial2 || 'No proporcionado'}\n`;
+      body += `RUC: ${data.ruc2 || 'No proporcionado'}\n`;
+      body += `Dirección: ${data.direccion2 || 'No proporcionado'}\n\n`;
+    }
+
+    // Instrumentos de medida
+    if (data.nombre && data.nombre.length > 0) {
+      body += `=== INSTRUMENTOS DE MEDIDA ===\n`;
+      data.nombre.forEach((nombre, index) => {
+        body += `Instrumento ${index + 1}:\n`;
+        body += `- Nombre: ${nombre || 'No proporcionado'}\n`;
+        body += `- Marca: ${data.marca[index] || 'No proporcionado'}\n`;
+        body += `- Modelo: ${data.modelo[index] || 'No proporcionado'}\n`;
+        body += `- Alcance Máximo: ${data.maximo[index] || 'No proporcionado'}\n`;
+        body += `- División Mínima: ${data.minimo[index] || 'No proporcionado'}\n\n`;
+      });
+    }
+    
+    // Codificar para URL
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    
+    // Crear el enlace mailto
+    const mailtoLink = `mailto:jsalvador@unsa.edu.pe?subject=${encodedSubject}&body=${encodedBody}`;
+    
+    // Abrir el cliente de correo
+    window.location.href = mailtoLink;
+  }
+</script>

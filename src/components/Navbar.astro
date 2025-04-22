@@ -1,0 +1,131 @@
+---
+// Importaciones
+import { Image } from "astro:assets";
+import LogoCyam from '../assets/logo.png';
+import Phone from "../icons/Phone.astro";
+import Hamburger from "../icons/Hamburger.astro";
+import Close from "../icons/Close.astro";
+
+// Props
+export interface Props {
+  logoAlt?: string;
+  phoneNumbers?: string[];
+}
+
+const { logoAlt = "Logo Empresa CYAM S.R.L.", phoneNumbers = ["+51 958 793 335", "+51 958 793 339"] } = Astro.props;
+---
+
+<nav 
+  class="container max-w-6xl mx-auto flex justify-between items-center py-4 text-sm sm:text-base font-medium tracking-tight text-gray-600"
+  aria-label="Navegación principal"
+>
+  <!-- Logo -->
+  <a href="/" class="z-50 pl-4 md:pl-0">
+    <Image src={LogoCyam} alt={logoAlt} class="w-32" width={128} />
+  </a>
+
+  <!-- Menú desktop -->
+  <ul class="hidden md:flex space-x-8">
+    <li><a href="/services" class="hover:text-gray-900 transition-colors">Servicios</a></li>
+    <li><a href="#" class="hover:text-gray-900 transition-colors">Calibraciones</a></li>
+    <li><a href="/about" class="hover:text-gray-900 transition-colors">Sobre nosotros</a></li>
+    <li><a href="/contact" class="hover:text-gray-900 transition-colors">Contáctanos</a></li>
+  </ul>
+
+  <!-- Teléfonos desktop -->
+  <ul class="hidden md:block space-y-1">
+    {phoneNumbers.map((number) => (
+      <li class="flex items-center gap-x-1 italic">
+        <Phone class="size-4" />
+        <span>{number}</span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Botón móvil -->
+  <button
+    id="menu-button"
+    class="md:hidden z-50 p-4 rounded-md focus:outline-none"
+    aria-label="Menú de navegación"
+    aria-expanded="false"
+  >
+    <Hamburger id="menu-icon" class="size-6" />
+    <Close id="close-icon" class="size-6 hidden" />
+  </button>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-white/90 backdrop-blur-md z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out transform translate-x-full"
+    aria-hidden="true"
+  >
+    <ul class="space-y-4 text-center">
+      <li><a href="/services" class="hover:text-gray-900 transition-colors block py-2">Servicios</a></li>
+      <li><a href="#" class="hover:text-gray-900 transition-colors block py-2">Calibraciones</a></li>
+      <li><a href="/about" class="hover:text-gray-900 transition-colors block py-2">Sobre nosotros</a></li>
+      <li><a href="/contact" class="hover:text-gray-900 transition-colors block py-2">Contáctanos</a></li>
+    </ul>
+
+    <ul class="mt-12 space-y-4">
+      {phoneNumbers.map((number) => (
+        <li class="flex items-center gap-x-2 italic">
+          <Phone class="size-5" />
+          <span>{number}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+  function setupNavbar() {
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    let isMenuOpen = false;
+
+    // Limpiar event listeners anteriores para evitar duplicados
+    const newMenuButton = menuButton.cloneNode(true);
+    menuButton.parentNode.replaceChild(newMenuButton, menuButton);
+
+    newMenuButton.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      
+      // Actualizar atributos ARIA
+      newMenuButton.setAttribute('aria-expanded', isMenuOpen.toString());
+      mobileMenu.setAttribute('aria-hidden', (!isMenuOpen).toString());
+      
+      // Alternar clases para animación
+      mobileMenu.classList.toggle('translate-x-full');
+      mobileMenu.classList.toggle('translate-x-0');
+      
+      // Alternar iconos
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      
+      // Bloquear/desbloquear scroll
+      document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    });
+
+    // Cerrar menú al hacer clic en enlaces
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        isMenuOpen = false;
+        newMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Ejecutar al cargar inicialmente
+  document.addEventListener('DOMContentLoaded', setupNavbar);
+  
+  // Ejecutar después de cada transición de página
+  document.addEventListener('astro:after-swap', setupNavbar);
+</script>
