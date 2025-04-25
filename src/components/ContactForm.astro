@@ -1,20 +1,22 @@
 ---
 import { Image } from "astro:assets";
+import Send from "../icons/Send.astro";
+import Clear from "../icons/Clear.astro";
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-8">
-    <h1 transition:name='contact-us' class="mb-6 text-4xl sm:text-5xl md:text-6xl leading-[1.2] tracking-tight font-semibold text-center text-gray-900">Solicita una <span class="text-[#31A4EA]/80">cotización</span></h1>
+    <h1 transition:name='contact-us' class="mb-6 text-4xl sm:text-5xl md:text-6xl leading-[1.2] tracking-tight font-semibold text-center text-gray-900">Solicita una <span class="text-[#31A4EA]">cotización</span></h1>
     <p class="text-sm sm:text-base leading-relaxed tracking-tight text-center text-gray-600">Completa el formulario y nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
   <form 
     id="formCotizacion" 
     name="formCotizacion" 
     onsubmit="prepareMailto(event)"
-    class="bg-white rounded-lg shadow-lg mt-8 p-6 md:p-8"
+    class="bg-white rounded-md shadow-lg mt-8 p-6 md:p-8"
   >
     <!-- 1. DATOS DEL CLIENTE -->
     <div class="mb-6">
       <div class="mb-4">
-        <h4 class="font-semibold text-[#31A4EA]/80 mr-2">1. Datos del cliente</h4>
+        <h4 class="font-semibold text-[#31A4EA] mr-2">1. Datos del cliente</h4>
         <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Envíanos la información solicitada para poder responder a tu solicitud.</span>
       </div>
       
@@ -25,7 +27,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="razonsocial" 
           name="razonsocial" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Razón social *" 
           required
         >
@@ -34,7 +36,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="ruc" 
           name="ruc" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="RUC *" 
           maxlength="11" 
           required
@@ -44,7 +46,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="direccion" 
           name="direccion" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Dirección"
         >
       </div>
@@ -53,7 +55,7 @@ import { Image } from "astro:assets";
     <!-- 2. CONTACTO -->
     <div class="mb-6">
       <div class="mb-4">
-        <h4 class="font-semibold text-[#31A4EA]/80 mr-2">2. Contacto</h4>
+        <h4 class="font-semibold text-[#31A4EA] mr-2">2. Contacto</h4>
         <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Datos de la persona que solicita</span>
       </div>
       
@@ -62,7 +64,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="nombres" 
           name="nombres" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Nombres *" 
           required
         >
@@ -71,7 +73,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="apellidos" 
           name="apellidos" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Apellidos *" 
           required
         >
@@ -80,7 +82,7 @@ import { Image } from "astro:assets";
           type="tel" 
           id="celular" 
           name="celular" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Celular *" 
           maxlength="9" 
           required
@@ -90,7 +92,7 @@ import { Image } from "astro:assets";
           type="email" 
           id="correo" 
           name="correo" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Correo electrónico *" 
           required
         >
@@ -100,7 +102,7 @@ import { Image } from "astro:assets";
     <!-- 3. INFORMACIÓN DEL SERVICIO -->
     <div class="mb-6">
         <div class="mb-4">
-            <h4 class="font-semibold text-[#31A4EA]/80 mr-2">3. Información del servicio</h4>
+            <h4 class="font-semibold text-[#31A4EA] mr-2">3. Información del servicio</h4>
         <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600">Lugar de ejecución del servicio</span>
       </div>
       
@@ -110,7 +112,7 @@ import { Image } from "astro:assets";
             type="radio" 
             name="lugar" 
             value="LOJUSTO" 
-            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            class="size-4 text-[#31A4EA] focus:ring-[#31A4EA] border-gray-300"
             required
           >
           <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">CYAM S.R.L.</span>
@@ -121,7 +123,7 @@ import { Image } from "astro:assets";
             type="radio" 
             name="lugar" 
             value="Instalaciones del Cliente" 
-            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            class="size-4 text-[#31A4EA] focus:ring-[#31A4EA] border-gray-300"
             required
           >
           <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">Instalaciones del cliente</span>
@@ -132,7 +134,7 @@ import { Image } from "astro:assets";
     <!-- 4. DATOS PARA LA EMISIÓN DEL CERTIFICADO -->
     <div class="mb-6">
       <div class="mb-4">
-        <h4 class="font-semibold text-[#31A4EA]/80">4. Datos para la emisión del certificado</h4>
+        <h4 class="font-semibold text-[#31A4EA]">4. Datos para la emisión del certificado</h4>
       </div>
       
       <div class="flex flex-wrap gap-6 mb-4">
@@ -142,7 +144,7 @@ import { Image } from "astro:assets";
             name="mismosDatos" 
             id="siDatos" 
             value="siUsar" 
-            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            class="size-4 text-[#31A4EA] focus:ring-[#31A4EA] border-gray-300"
             onclick="toggleCertificadoDatos(false)"
             checked
           >
@@ -155,7 +157,7 @@ import { Image } from "astro:assets";
             name="mismosDatos" 
             id="noDatos" 
             value="noUsar" 
-            class="size-4 text-[#31A4EA]/80 focus:ring-[#31A4EA] border-gray-300"
+            class="size-4 text-[#31A4EA] focus:ring-[#31A4EA] border-gray-300"
             onclick="toggleCertificadoDatos(true)"
           >
           <span class="text-sm sm:text-base leading-relaxed tracking-tight text-gray-600 ml-2">No, usar datos distintos.</span>
@@ -167,7 +169,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="razonsocial2" 
           name="razonsocial2" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Razón social"
         >
         
@@ -175,7 +177,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="ruc2" 
           name="ruc2" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="RUC" 
           maxlength="11"
         >
@@ -184,7 +186,7 @@ import { Image } from "astro:assets";
           type="text" 
           id="direccion2" 
           name="direccion2" 
-          class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+          class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
           placeholder="Dirección"
         >
       </div>
@@ -193,11 +195,11 @@ import { Image } from "astro:assets";
     <!-- 5. INSTRUMENTOS DE MEDIDA -->
     <div class="mb-6">
       <div class="flex items-center mb-4">
-        <h4 class="font-semibold text-[#31A4EA]/80 mr-4">6. Instrumentos de medida</h4>
+        <h4 class="font-semibold text-[#31A4EA] mr-4">6. Instrumentos de medida</h4>
         <button 
           type="button" 
           id="addButton" 
-          class="px-3 py-1 bg-[#31A4EA] text-white rounded-lg hover:bg-[#31A4EA]/80 focus:outline-none focus:ring-1 focus:ring-[#31A4EA] focus:ring-opacity-50"
+          class="px-3 py-1 bg-[#31A4EA] text-white rounded-md hover:bg-[#31A4EA]/80 transition-colors hover:cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#31A4EA] focus:ring-opacity-50"
           title="Agregar Instrumento"
           onclick="addInstrumento()"
         >
@@ -207,13 +209,13 @@ import { Image } from "astro:assets";
       
       <!-- Array de Instrumentos -->
       <div id="instrumentosContainer" class="space-y-4">
-        <div class="instrumento bg-gray-50 p-4 rounded-lg">
+        <div class="instrumento bg-gray-50 p-4 rounded-md">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="md:col-span-4">
               <input 
                 type="text" 
                 name="nombre[]" 
-                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
                 placeholder="Nombre del instrumento *" 
                 required
               >
@@ -222,7 +224,7 @@ import { Image } from "astro:assets";
               <input 
                 type="text" 
                 name="marca[]" 
-                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
                 placeholder="Marca *" 
                 required
               >
@@ -231,7 +233,7 @@ import { Image } from "astro:assets";
               <input 
                 type="text" 
                 name="modelo[]" 
-                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
                 placeholder="Modelo *" 
                 required
               >
@@ -240,7 +242,7 @@ import { Image } from "astro:assets";
               <input 
                 type="number" 
                 name="maximo[]" 
-                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
                 placeholder="Alcance Máximo *" 
                 required
               >
@@ -249,7 +251,7 @@ import { Image } from "astro:assets";
               <input 
                 type="number" 
                 name="minimo[]" 
-                class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+                class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
                 placeholder="División Mínima *" 
                 required
               >
@@ -260,19 +262,21 @@ import { Image } from "astro:assets";
     </div>
 
     <!-- Botones de envío -->
-    <div class="flex flex-wrap gap-4 mt-8">
+    <div class="flex flex-wrap justify-end gap-4 mt-8">
       <button 
         type="submit" 
-        class="px-6 py-3 bg-blue-700 text-white rounded-md hover:bg-blue-800 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-opacity-50 transition-colors hover:cursor-pointer"
+        class="flex items-center gap-x-2 px-3 py-2 bg-[#31A4EA] text-white rounded-md hover:bg-[#31A4EA]/90 focus:outline-none focus:ring-1 focus:ring-[#31A4EA] text-sm sm:text-base focus:ring-opacity-50 transition-colors hover:cursor-pointer"
       >
+        <Send class="size-5"/>
         Enviar Solicitud
       </button>
       
       <button 
         type="button" 
         onclick="resetForm()"
-        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-opacity-50 transition-colors hover:cursor-pointer"
+        class="flex items-center gap-x-2 px-3 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 text-sm sm:text-base focus:ring-opacity-50 transition-colors hover:cursor-pointer"
       >
+        <Clear class="size-5" />
         Limpiar Formulario
       </button>
     </div>
@@ -298,14 +302,14 @@ import { Image } from "astro:assets";
   function addInstrumento() {
     const container = document.getElementById('instrumentosContainer');
     const newInstrumento = document.createElement('div');
-    newInstrumento.className = 'instrumento bg-gray-50 p-4 rounded-lg';
+    newInstrumento.className = 'instrumento bg-gray-50 p-4 rounded-md';
     newInstrumento.innerHTML = `
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="md:col-span-4">
           <input 
             type="text" 
             name="nombre[]" 
-            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
             placeholder="Nombre del instrumento *" 
             required
           >
@@ -314,7 +318,7 @@ import { Image } from "astro:assets";
           <input 
             type="text" 
             name="marca[]" 
-            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
             placeholder="Marca *" 
             required
           >
@@ -323,7 +327,7 @@ import { Image } from "astro:assets";
           <input 
             type="text" 
             name="modelo[]" 
-            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
             placeholder="Modelo *" 
             required
           >
@@ -332,7 +336,7 @@ import { Image } from "astro:assets";
           <input 
             type="number" 
             name="maximo[]" 
-            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent  text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent  text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
             placeholder="Alcance Máximo *" 
             required
           >
@@ -341,7 +345,7 @@ import { Image } from "astro:assets";
           <input 
             type="number" 
             name="minimo[]" 
-            class="w-full px-3 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
+            class="w-full px-3 py-1 border border-gray-300 rounded-md focus:ring-1 focus:ring-[#31A4EA] focus:border-transparent text-sm sm:text-base leading-relaxed tracking-tight text-gray-600"
             placeholder="División Mínima *" 
             required
           >
@@ -350,7 +354,7 @@ import { Image } from "astro:assets";
       <button 
         type="button" 
         onclick="this.parentElement.remove()" 
-        class="mt-2 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-red-500 focus:ring-opacity-50 text-sm"
+        class="mt-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-red-500 focus:ring-opacity-50 text-sm"
       >
         Eliminar
       </button>
