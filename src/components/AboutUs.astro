@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import ImageCalibracion from '../assets/calibracion.jpg';
+import ImageCalibracion from '../assets/calibracion.png';
 import ImageMantenimiento from '../assets/mantenimiento.png';
-import ImageFabricacion from '../assets/fabricacion.jpg';
+import ImageFabricacion from '../assets/fabricacion.png';
 
 import ImageISO from '../assets/iso.png';
 export interface Props {
@@ -110,13 +110,12 @@ const {
       </div>
 
       {/* Imagen del laboratorio */}
-            <div class="lg:w-1/2 space-y-6" data-aos="fade-left">
+            <div class="md:lg:w-1/2 space-y-6" data-aos="fade-left">
               {[ImageCalibracion, ImageFabricacion, ImageMantenimiento].map((img, i) => (
                 <div class="relative rounded-2xl overflow-hidden shadow-lg">
-                  <Image src={img} alt={`Imagen ${i}`} class="w-full h-64 object-cover" loading="lazy" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#31A4EA]/30 to-[#31A4EA]/10"></div>
+                  <Image src={img} alt={`Imagen ${i}`} class="w-full h-auto md:h-64 object-cover" loading="lazy" />
                   <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm">
-                    <p class="text-sm font-medium">
+                    <p class="text-sm font-medium text-right">
                       {["Calibración", "Fabricación", "Mantenimiento"][i]}
                     </p>
                   </div>

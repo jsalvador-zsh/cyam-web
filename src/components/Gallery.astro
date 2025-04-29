@@ -15,6 +15,7 @@ export interface GalleryItem {
   title?: string;
   description?: string;
   category?: string;
+  priority?: boolean;
 }
 
 export interface Props {
@@ -35,7 +36,8 @@ const galleryItems: GalleryItem[] = [
     alt: "Vista panorámica del laboratorio de masa",
     title: "Laboratorio de Masa",
     description: "Equipado con patrones certificados por INACAL para garantizar trazabilidad metrológica.",
-    category: "Infraestructura"
+    category: "Infraestructura",
+    priority: true
   },
   {
     image: image2,
@@ -60,7 +62,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     image: image5,
-    alt: "Equipo técnico analizando resultados",
+    alt: "Equipo técnico analizando resultados de calibración",
     title: "Expertos en Metrología",
     description: "Nuestro personal cuenta con más de 10 años de experiencia en calibración industrial.",
     category: "Equipo Humano"
@@ -70,7 +72,8 @@ const galleryItems: GalleryItem[] = [
     alt: "Laboratorio de temperatura con cámaras climáticas",
     title: "Control de Variables",
     description: "Cámaras de estabilización para calibración en condiciones controladas.",
-    category: "Infraestructura"
+    category: "Infraestructura",
+    priority: true
   },
   {
     image: image7,
@@ -87,161 +90,112 @@ const galleryItems: GalleryItem[] = [
     category: "Equipos"
   }
 ];
+
+// Configuración de layout para cada item
+const gridLayout = [
+  { class: "col-span-2 row-span-1", item: galleryItems[0] },
+  { class: "col-span-3 row-span-1", item: galleryItems[1] },
+  { class: "col-span-1 row-span-2", item: galleryItems[2] },
+  { class: "col-span-2 row-span-1", item: galleryItems[3] },
+  { class: "col-span-3 row-span-1", item: galleryItems[4] },
+  { class: "col-span-1 row-span-1", item: galleryItems[5] },
+  { class: "col-span-2 row-span-1", item: galleryItems[6] },
+  { class: "col-span-3 row-span-1", item: galleryItems[7] }
+];
 ---
-<section class="py-16 sm:py-24 bg-white">
-  <div class="container mx-auto px-5 max-w-7xl">
+
+<section class="py-16 sm:py-24 bg-white" aria-labelledby="gallery-heading">
+  <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
     {/* Encabezado con texto introductorio */}
-    <div class="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <header class="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
+      <h1 id="gallery-heading" class="mb-6 text-4xl sm:text-5xl md:text-6xl leading-[1.2] tracking-tight font-semibold text-center text-gray-900">
         {title} <span class="text-[#31A4EA]">{subtitle}</span>
-      </h2>
+      </h1>
       <p class="text-lg text-gray-600 mt-6">
         {introText}
       </p>
-    </div>
+    </header>
 
-    {/* Grid Bento mejor distribuido */}
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-5">
-      {/* Imagen 1 - Grande horizontal */}
-      <div class="relative group col-span-2 row-span-2 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[0].image}
-          alt={galleryItems[0].alt}
-          width={800}
-          height={600}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-          <span class="text-[#31A4EA] text-sm font-medium mb-1">{galleryItems[0].category}</span>
-          <h3 class="text-xl font-semibold text-white mb-2">{galleryItems[0].title}</h3>
-          <p class="text-gray-200 text-sm">{galleryItems[0].description}</p>
-        </div>
-      </div>
-
-      {/* Imagen 2 - Vertical */}
-      <div class="relative group col-span-2 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[1].image}
-          alt={galleryItems[1].alt}
-          width={600}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-          <span class="text-[#31A4EA] text-xs font-medium mb-1">{galleryItems[1].category}</span>
-          <h3 class="text-lg font-semibold text-white">{galleryItems[1].title}</h3>
-        </div>
-      </div>
-
-      {/* Imagen 3 - Pequeña cuadrada */}
-      <div class="relative group col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[2].image}
-          alt={galleryItems[2].alt}
-          width={400}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* Imagen 4 - Pequeña cuadrada */}
-      <div class="relative group col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[3].image}
-          alt={galleryItems[3].alt}
-          width={400}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* Imagen 5 - Horizontal */}
-      <div class="relative group col-span-2 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[4].image}
-          alt={galleryItems[4].alt}
-          width={800}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-          <span class="text-[#31A4EA] text-xs font-medium mb-1">{galleryItems[4].category}</span>
-          <h3 class="text-lg font-semibold text-white">{galleryItems[4].title}</h3>
-        </div>
-      </div>
-
-      {/* Imagen 6 - Vertical */}
-      <div class="relative group col-span-1 row-span-2 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[5].image}
-          alt={galleryItems[5].alt}
-          width={400}
-          height={800}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-          <span class="text-[#31A4EA] text-sm font-medium mb-1">{galleryItems[5].category}</span>
-          <h3 class="text-xl font-semibold text-white mb-2">{galleryItems[5].title}</h3>
-          <p class="text-gray-200 text-sm">{galleryItems[5].description}</p>
-        </div>
-      </div>
-
-      {/* Imagen 7 - Pequeña cuadrada */}
-      <div class="relative group col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[6].image}
-          alt={galleryItems[6].alt}
-          width={400}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* Imagen 8 - Pequeña cuadrada */}
-      <div class="relative group col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
-        <Image
-          src={galleryItems[7].image}
-          alt={galleryItems[7].alt}
-          width={400}
-          height={400}
-          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-      </div>
-    </div>
+    {/* Grid de galería accesible */}
+    <ul class="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4" role="list" aria-label="Galería de imágenes del laboratorio">
+      {gridLayout.map(({class: layoutClass, item}, index) => (
+        <li class={`relative group rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 ${layoutClass}`}>
+          <figure class="h-full">
+            {/* Imagen con mejor accesibilidad */}
+            <Image
+              src={item.image}
+              alt={item.alt}
+              width={layoutClass.includes('col-span-2') ? 800 : 400}
+              height={layoutClass.includes('row-span-2') ? 800 : 400}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
+              loading={item.priority ? "eager" : "lazy"}
+              decoding={item.priority ? "sync" : "async"}
+              fetchpriority={item.priority ? "high" : "low"}
+              aria-describedby={`desc-${index}`}
+            />
+            
+            {/* Overlay con información accesible */}
+            <figcaption 
+              id={`desc-${index}`}
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6"
+              aria-hidden="true"
+            >
+              {item.category && (
+                <span class="text-white text-xs sm:text-sm font-medium mb-1">
+                  {item.category}
+                </span>
+              )}
+              <h2 class="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2">
+                {item.title}
+              </h2>
+              {item.description && (
+                <p class="text-gray-200 text-xs sm:text-sm">
+                  {item.description}
+                </p>
+              )}
+            </figcaption>
+          </figure>
+          
+          {/* Botón accesible para más información */}
+          <button 
+            class="absolute inset-0 w-full h-full focus:outline-none focus:ring-4 focus:ring-[#31A4EA]/50"
+            aria-label={`Ver detalles de ${item.title || 'imagen de galería'}`}
+            tabindex="0"
+          >
+            <span class="sr-only">Ver detalles</span>
+          </button>
+        </li>
+      ))}
+    </ul>
 
     {/* Texto de cierre */}
-    <div class="mt-16 text-center max-w-3xl mx-auto">
+    <footer class="mt-16 text-center max-w-3xl mx-auto">
       <p class="text-gray-600 mb-6">
         En CYAM combinamos tecnología de punta con procesos certificados para ofrecer servicios de calibración con los más altos estándares de calidad metrológica.
       </p>
-    </div>
+      <a 
+        href="/contact" 
+        class="inline-block px-6 py-3 bg-[#31A4EA] text-white font-medium rounded-lg hover:bg-[#2a8ecf] transition-colors focus:outline-none focus:ring-2 focus:ring-[#31A4EA] focus:ring-offset-2"
+        aria-label="Contactar con CYAM para más información"
+      >
+        Solicitar información
+      </a>
+    </footer>
   </div>
 </section>
+
+<style>
+  /* Mejoras de accesibilidad para enfoque */
+  button:focus-visible {
+    outline: 3px solid #31A4EA;
+    outline-offset: 2px;
+  }
+  
+  /* Transiciones suaves para usuarios que prefieren movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+</style>
