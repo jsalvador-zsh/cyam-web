@@ -106,22 +106,17 @@ const gridLayout = [
 
 <section class="py-16 sm:py-24 bg-white" aria-labelledby="gallery-heading">
   <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
-    {/* Encabezado con texto introductorio */}
     <header class="text-center mb-12 md:mb-16 max-w-4xl mx-auto">
       <h1 id="gallery-heading" class="mb-6 text-4xl sm:text-5xl md:text-6xl leading-[1.2] tracking-tight font-semibold text-center text-gray-900">
         {title} <span class="text-[#31A4EA]">{subtitle}</span>
       </h1>
-      <p class="text-lg text-gray-600 mt-6">
-        {introText}
-      </p>
+      <p class="text-lg text-gray-600 mt-6">{introText}</p>
     </header>
 
-    {/* Grid de galería accesible */}
     <ul class="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4" role="list" aria-label="Galería de imágenes del laboratorio">
       {gridLayout.map(({class: layoutClass, item}, index) => (
         <li class={`relative group rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 ${layoutClass}`}>
           <figure class="h-full">
-            {/* Imagen con mejor accesibilidad */}
             <Image
               src={item.image}
               alt={item.alt}
@@ -133,8 +128,6 @@ const gridLayout = [
               fetchpriority={item.priority ? "high" : "low"}
               aria-describedby={`desc-${index}`}
             />
-            
-            {/* Overlay con información accesible */}
             <figcaption 
               id={`desc-${index}`}
               class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 md:p-6"
@@ -149,14 +142,11 @@ const gridLayout = [
                 {item.title}
               </h2>
               {item.description && (
-                <p class="text-gray-200 text-xs sm:text-sm">
-                  {item.description}
-                </p>
+                <p class="text-gray-200 text-xs sm:text-sm">{item.description}</p>
               )}
             </figcaption>
           </figure>
-          
-          {/* Botón accesible para más información */}
+
           <button 
             class="absolute inset-0 w-full h-full focus:outline-none focus:ring-4 focus:ring-[#31A4EA]/50"
             aria-label={`Ver detalles de ${item.title || 'imagen de galería'}`}
@@ -168,7 +158,6 @@ const gridLayout = [
       ))}
     </ul>
 
-    {/* Texto de cierre */}
     <footer class="mt-16 text-center max-w-3xl mx-auto">
       <p class="text-gray-600 mb-6">
         En CYAM combinamos tecnología de punta con procesos certificados para ofrecer servicios de calibración con los más altos estándares de calidad metrológica.
@@ -198,4 +187,9 @@ const gridLayout = [
       animation-duration: 0.01ms !important;
     }
   }
+  .group:hover .w-full {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
 </style>

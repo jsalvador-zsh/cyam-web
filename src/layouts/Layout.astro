@@ -1,5 +1,4 @@
 ---
-// Supports weights 100-900
 import "@fontsource-variable/inter";
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
@@ -9,7 +8,6 @@ interface Props {
 	description: string;
 }
 const { title, description } = Astro.props as Props;
-
 ---
 
 <!doctype html>
@@ -25,8 +23,19 @@ const { title, description } = Astro.props as Props;
 	<body>
 		<ClientRouter />
 		<slot />
+		<script type="module" client:load>
+			import { initSmoothScroll } from "../src/scripts/smooth-scroll";
+			import { animateHeroSection } from "../src/scripts/animations";
+
+			initSmoothScroll();
+			animateHeroSection();
+			document.addEventListener("astro:load", () => {
+				animateAboutUsSection();
+			});
+		</script>
 	</body>
 </html>
+
 <style is:global>
 	body {
 		font-family: "Inter Variable", sans-serif;
