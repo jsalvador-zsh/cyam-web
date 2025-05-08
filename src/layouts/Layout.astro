@@ -23,16 +23,6 @@ const { title, description } = Astro.props as Props;
 	<body>
 		<ClientRouter />
 		<slot />
-		<script type="module" client:load>
-			import { initSmoothScroll } from "../src/scripts/smooth-scroll";
-			import { animateHeroSection } from "../src/scripts/animations";
-
-			initSmoothScroll();
-			animateHeroSection();
-			document.addEventListener("astro:load", () => {
-				animateAboutUsSection();
-			});
-		</script>
 	</body>
 </html>
 
@@ -41,3 +31,13 @@ const { title, description } = Astro.props as Props;
 		font-family: "Inter Variable", sans-serif;
 	}
 </style>
+<script type="module" is:inline>
+	import { initSmoothScroll } from "../src/scripts/smooth-scroll";
+	import { animateHeroSection } from "../src/scripts/animations";
+
+	initSmoothScroll();
+	animateHeroSection();
+	document.addEventListener("astro:load", () => {
+		animateAboutUsSection();
+	});
+</script>
