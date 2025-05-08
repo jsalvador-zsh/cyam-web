@@ -2,6 +2,7 @@
 import "@fontsource-variable/inter";
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import SmoothScrollClient from "../components/SmoothScrollClient";
 
 interface Props {
 	title: string;
@@ -23,6 +24,7 @@ const { title, description } = Astro.props as Props;
 	<body>
 		<ClientRouter />
 		<slot />
+		<SmoothScrollClient client:only="react" />
 	</body>
 </html>
 
@@ -31,13 +33,11 @@ const { title, description } = Astro.props as Props;
 		font-family: "Inter Variable", sans-serif;
 	}
 </style>
-<script type="module" client:load>
-	import { initSmoothScroll } from "/scripts/smooth-scroll";
-	import { animateHeroSection } from "/scripts/animations";
+<!-- <script type="module" client:load>
+	import { initSmoothScroll } from '../src/scripts/smooth-scroll';
+	import { animateHeroSection, animateAboutSection } from '../src/scripts/animations';
 
 	initSmoothScroll();
 	animateHeroSection();
-	document.addEventListener("astro:load", () => {
-		animateAboutUsSection();
-	});
-</script>
+	animateAboutSection();
+</script> -->

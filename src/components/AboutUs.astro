@@ -43,7 +43,7 @@ const {
 <section class="py-12 sm:py-24 bg-white">
   <div class="container mx-auto px-5 max-w-6xl">
     {/* Encabezado */}
-    <div class="text-center mb-12 md:mb-16">
+    <div class="text-center mb-12 md:mb-16 about-animate">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
         {title} <span class="text-[#31A4EA]">{subtitle}</span>
       </h2>
@@ -58,11 +58,11 @@ const {
         <div class="grid md:grid-cols-2 gap-6">
           {highlights.map((highlight, index) => (
             <div 
-              class="bg-gray-50 p-6 rounded-xl hover:bg-blue-50 transition-all duration-300"
+              class="bg-gray-50 p-6 rounded-xl hover:bg-blue-50 transition-all duration-300 aboutus-animate"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <div class="flex items-center gap-4 mb-4">
+              <div class="flex items-center gap-4 mb-4 about-animate">
                 {highlight.icon === "team" && (
                   <div class="p-3 bg-blue-100 rounded-md text-[#31A4EA]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,7 +92,7 @@ const {
         </div>
 
         {/* Normativa ISO */}
-        <div class="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-6">
+        <div class="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-6 about-animate">
           <div class="flex flex-col sm:flex-row items-center gap-6">
             <div class="flex-shrink-0">
               <Image src={ImageISO} alt="Norma ISO/IEC 17025" class="h-24 w-auto" />
@@ -110,7 +110,7 @@ const {
       </div>
 
       {/* Imagen del laboratorio */}
-            <div class="md:lg:w-1/2 space-y-6" data-aos="fade-left">
+            <div class="md:lg:w-1/2 space-y-6 about-animate" data-aos="fade-left">
               {[ImageCalibracion, ImageFabricacion, ImageMantenimiento].map((img, i) => (
                 <div class="relative rounded-2xl overflow-hidden shadow-lg">
                   <Image src={img} alt={`Imagen ${i}`} class="w-full h-auto md:h-64 object-cover" loading="lazy" />
