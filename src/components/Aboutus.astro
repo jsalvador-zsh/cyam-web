@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import teamPhoto from "../assets/images/equipo.png";
+
+interface Props {
+  title?: string;
+  description?: string;
+  showNames?: boolean;
+}
+
+const { 
+  title = "Nuestro Equipo", 
+  description = "El talento humano que hace posible la excelencia en nuestros servicios de calibración",
+  showNames = false
+} = Astro.props;
+---
+
+<div class="py-16" id="aboutus">
+  <div class="container max-w-6xl mx-auto px-4">
+    <!-- Encabezado -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="font-heading text-3xl md:text-6xl mb-4">{title}</h2>
+      <p class="text-base md:text-lg">{description}</p>
+    </div>
+
+    <!-- Foto del equipo -->
+    <div class="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-6"> 
+      <Image 
+        src={teamPhoto} 
+        alt="Equipo completo de CYAM S.R.L." 
+        class="w-full h-auto object-cover"
+        loading="eager"
+        data-aos="zoom-in" data-aos-duration="1500"
+      />
+
+    <!-- Texto descriptivo opcional -->
+    <div class="max-w-2xl mx-auto text-center">
+      <p>
+        En CYAM S.R.L. contamos con un equipo altamente capacitado y comprometido con la calidad en cada proceso de calibración.
+        Nuestros técnicos cuentan con certificaciones internacionales que garantizan la precisión de sus trabajos.
+      </p>
+      
+      <!-- Botón opcional -->
+      <div class="mt-8">
+        <a 
+          href="/aboutus" 
+          class="inline-flex py-3 px-8 items-center justify-center text-lg font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300"
+        >
+          Conoce más sobre nosotros
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+---
+// src/components/ContactInfo.astro
+import { Image } from "astro:assets";
+import iconPhone from '../assets/icons/phone.svg';
+import iconEmail from '../assets/icons/email.svg';
+import iconClock from '../assets/icons/clock.svg';
+import iconMap from '../assets/icons/map-pin.svg';
+
+interface ContactItem {
+  icon: ImageMetadata;
+  title: string;
+  content: string;
+  link?: string;
+}
+
+const contactItems: ContactItem[] = [
+  {
+    icon: iconMap,
+    title: "Ubicación",
+    content: "Urb. Manuel Prado, Calle César Vallejo Nro. 102 - Paucarpata, Arequipa",
+  },
+  {
+    icon: iconPhone,
+    title: "Teléfono",
+    content: "+51 958-793-339 / +51 958-793-335",
+    link: "tel:+51958793339"
+  },
+  {
+    icon: iconEmail,
+    title: "Correo",
+    content: "c_scalibraciones@yahoo.com",
+    link: "mailto:c_scalibraciones@yahoo.com"
+  },
+  {
+    icon: iconClock,
+    title: "Horario de Atención",
+    content: "Lunes a Viernes: 9:00 am - 6:00 pm"
+  }
+];
+---
+
+<div class="py-16" id="contactus">
+  <div class="container max-w-6xl mx-auto px-4">
+    <!-- Encabezado -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="font-heading text-3xl md:text-6xl mb-4">Contáctanos</h2>
+      <p class="text-base md:text-lg">Estamos aquí para responder tus consultas sobre nuestros servicios de calibración.</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Información de contacto -->
+      <div class="lg:w-1/2">
+        <div class="grid grid-cols-1 gap-6">
+          {contactItems.map((item) => (
+            <div class="bg-muted rounded-2xl p-6 border border-border hover:border-accent transition-colors duration-300">
+              <div class="flex items-start">
+                <Image 
+                  src={item.icon} 
+                  alt={item.title} 
+                  class="h-6 w-6 mt-1 mr-4 flex-shrink-0 text-accent"
+                  width={24}
+                  height={24}
+                />
+                <div>
+                  <h3 class="text-lg font-semiboldmb-2">{item.title}</h3>
+                  {item.link ? (
+                    <a 
+                      href={item.link} 
+                      rel="noopener noreferrer"
+                      class=" hover:text-accent transition-colors duration-200 whitespace-pre-line"
+                    >
+                      {item.content}
+                    </a>
+                  ) : (
+                    <p class=" whitespace-pre-line">{item.content}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <div class="lg:w-1/2" data-aos="zoom-in" data-aos-duration="1500">
+        <div class="h-full rounded-2xl overflow-hidden shadow-lg border border-border">
+          <!-- Contenedor del mapa -->
+          <div id="map" class="w-full h-96 lg:h-full"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Incluir Leaflet CSS y JS -->
+<link 
+  rel="stylesheet" 
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script 
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<!-- Script para inicializar el mapa -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const lat = -16.4139967;
+    const lng = -71.5131435;
+    
+    // Inicializar mapa
+    const map = L.map('map').setView([lat, lng], 16);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Añadir marcador
+    const marker = L.marker([lat, lng]).addTo(map)
+      .bindPopup('<b>CYAM S.R.L.</b><br>Urb. Manuel Prado, Calle César Vallejo Nro. 102');
+  });
+</script>
