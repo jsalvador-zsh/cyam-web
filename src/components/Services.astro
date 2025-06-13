@@ -175,10 +175,7 @@ const calibrationTypes: CalibrationType[] = [
           <h3 class="font-heading text-2xl font-semibold mb-4">Magnitudes de Calibración</h3>
           <p class="text-gray-600 max-w-2xl mx-auto">Seleccione la magnitud para ver los equipos que calibramos:</p>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Grid de magnitudes -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {calibrationTypes.map((type) => (
               <button
                 class="flex flex-col items-center p-6 rounded-xl border border-gray-200 hover:border-accent hover:bg-blue-50 transition-all duration-300" data-aos="zoom-in" data-aos-duration="1800"
@@ -195,17 +192,6 @@ const calibrationTypes: CalibrationType[] = [
               </button>
             ))}
           </div>
-          <div class="aspect-w-16 aspect-h-9">
-            <iframe 
-              class="w-full h-full rounded-2xl" 
-              src={videoUrl}
-              title="Video corporativo de CYAM S.R.L."
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
       </div>
 
       <!-- Sección Mantenimiento (oculta por defecto) -->
