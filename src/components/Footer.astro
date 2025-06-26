@@ -25,43 +25,43 @@ const navItems = [
   {
     text: "Quejas",
     href: "#complaints",
-  }
+  },
 ];
 
 const contactInfo = [
   {
     icon: mapIcon,
     text: "Urb. Manuel Prado, Calle César Vallejo Nro. 102 - Paucarpata, Arequipa",
-    link: "https://maps.app.goo.gl/rJDxiek6Q8GyNjmo7"
+    link: "https://maps.app.goo.gl/rJDxiek6Q8GyNjmo7",
   },
   {
     icon: phoneIcon,
     text: "+51 958-793-339 / +51 958-793-335",
-    link: "tel:+51958793339"
+    link: "tel:+51958793339",
   },
   {
     icon: emailIcon,
-    text: "c_scalibraciones@yahoo.com",
-    link: "mailto:c_scalibraciones@yahoo.com"
-  }
+    text: "comercial@cyam.com",
+    link: "mailto:comercial@cyam.com",
+  },
 ];
 
 const socialLinks = [
   {
     icon: facebookIcon,
     name: "Facebook",
-    url: "https://www.facebook.com/profile.php?id=100066765183571"
+    url: "https://www.facebook.com/profile.php?id=100066765183571",
   },
   {
     icon: instagramIcon,
     name: "Instagram",
-    url: "#"
+    url: "#",
   },
   {
     icon: linkedinIcon,
     name: "LinkedIn",
-    url: "#"
-  }
+    url: "#",
+  },
 ];
 ---
 
@@ -71,35 +71,39 @@ const socialLinks = [
       <!-- Logo y descripción -->
       <div class="lg:col-span-1">
         <a href="/" class="inline-block mb-6">
-          <Image 
-            src={logo} 
-            alt="CYAM S.R.L." 
+          <Image
+            src={logo}
+            alt="CYAM S.R.L."
             class="h-10 w-auto"
             width={160}
             height={40}
           />
         </a>
-        <p class="mb-6">Especialistas en calibración certificada de equipos de medición con estándares internacionales.</p>
-        
+        <p class="mb-6">
+          Expertos en calibración y mantenimiento de equipos, con competencia técnica y trazabilidad al Sistema Internacional de Unidades.
+        </p>
+
         <!-- Redes sociales -->
         <div class="flex space-x-4">
-          {socialLinks.map((social) => (
-            <a 
-              href={social.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-background transition-colors duration-300"
-              aria-label={social.name}
-            >
-              <Image 
-                src={social.icon} 
-                alt={social.name} 
-                class="h-6 w-6 text-background"
-                width={24}
-                height={24}
-              />
-            </a>
-          ))}
+          {
+            socialLinks.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-background transition-colors duration-300"
+                aria-label={social.name}
+              >
+                <Image
+                  src={social.icon}
+                  alt={social.name}
+                  class="h-6 w-6 text-background"
+                  width={24}
+                  height={24}
+                />
+              </a>
+            ))
+          }
         </div>
       </div>
 
@@ -107,16 +111,18 @@ const socialLinks = [
       <div>
         <h3 class="text-background text-lg font-semibold mb-6">Navegación</h3>
         <ul class="space-y-3">
-          {navItems.map((item) => (
-            <li>
-              <a 
-                href={item.href} 
-                class="hover:text-background transition-colors duration-300"
-              >
-                {item.text}
-              </a>
-            </li>
-          ))}
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="hover:text-background transition-colors duration-300"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
@@ -125,7 +131,7 @@ const socialLinks = [
         <h3 class="text-background text-lg font-semibold mb-6">Servicios</h3>
         <ul class="space-y-3">
           <li>
-            <a href="/#services" >Calibración de Masa</a>
+            <a href="/#services">Calibración de Masa</a>
           </li>
           <li>
             <a href="/#services">Calibración de Volumen</a>
@@ -143,29 +149,31 @@ const socialLinks = [
       <div>
         <h3 class="text-background text-lg font-semibold mb-6">Contacto</h3>
         <ul class="space-y-4">
-          {contactInfo.map((contact) => (
-            <li class="flex items-start">
-              <Image 
-                src={contact.icon} 
-                alt="" 
-                class="h-5 w-5 mt-1 mr-3 flex-shrink-0"
-                width={20}
-                height={20}
-              />
-              {contact.link ? (
-                <a 
-                  href={contact.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="hover:text-background transition-colors duration-300"
-                >
-                  {contact.text}
-                </a>
-              ) : (
-                <span>{contact.text}</span>
-              )}
-            </li>
-          ))}
+          {
+            contactInfo.map((contact) => (
+              <li class="flex items-start">
+                <Image
+                  src={contact.icon}
+                  alt=""
+                  class="h-5 w-5 mt-1 mr-3 flex-shrink-0"
+                  width={20}
+                  height={20}
+                />
+                {contact.link ? (
+                  <a
+                    href={contact.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-background transition-colors duration-300"
+                  >
+                    {contact.text}
+                  </a>
+                ) : (
+                  <span>{contact.text}</span>
+                )}
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
@@ -173,7 +181,9 @@ const socialLinks = [
     <!-- Derechos de autor -->
     <div class="border-t border-border mt-12 pt-8 text-center md:text-left">
       <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-sm text-background">© {new Date().getFullYear()} CYAM S.R.L. Todos los derechos reservados.</p>
+        <p class="text-sm text-background">
+          © {new Date().getFullYear()} CYAM S.R.L. Todos los derechos reservados.
+        </p>
       </div>
     </div>
   </div>
