@@ -42,14 +42,14 @@ const galleryItems: GalleryItem[] = [
   {
     image: vernier,
     title: "Vernier",
-    category: "Temperatura",
-    description: "Verificación de uniformidad y estabilidad térmica"
+    category: "Dimensional",
+    description: "Verificación de calibración de instrumentos de medición lineal"
   },
   {
     image: balanza2,
     title: "Balanza",
     category: "Masa",
-    description: "Calibración para grabdes pesos"
+    description: "Calibración para grandes masas"
   }
 ];
 
@@ -95,6 +95,12 @@ interface Props {
         onclick="filterGallery('Presión')"
       >
         Presión
+      </button>
+            <button 
+        class="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors duration-300"
+        onclick="filterGallery('Dimensional')"
+      >
+        Dimensional
       </button>
     </div>
 

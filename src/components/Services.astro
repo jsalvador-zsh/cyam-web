@@ -14,9 +14,7 @@ import forceIcon from "../assets/icons/force.svg";
 interface Props {
   videoUrl?: string;
 }
-const { 
-  videoUrl = "/video.mp4" 
-} = Astro.props;
+const { videoUrl = "/video.mp4" } = Astro.props;
 // Tipos de servicios
 type ServiceCategory = {
   id: string;
@@ -39,14 +37,16 @@ const serviceCategories: ServiceCategory[] = [
     id: "calibration",
     title: "Calibración",
     icon: calibrationIcon,
-    description: "Servicios de calibración certificada con patrones trazables a estándares internacionales"
+    description:
+      "Servicios de calibración con respaldo técnico y trazabilidad garantizada a través de patrones certificados por INACAL y laboratorios acreditados",
   },
   {
     id: "maintenance",
     title: "Mantenimiento",
     icon: maintenanceIcon,
-    description: "Mantenimiento preventivo y correctivo para equipos de medición"
-  }
+    description:
+      "Servicios de mantenimiento para preservar el buen funcionamiento y confiabilidad operativa de sus equipos.",
+  },
 ];
 
 // Datos de calibraciones por magnitud
@@ -62,8 +62,8 @@ const calibrationTypes: CalibrationType[] = [
       "Pesas M1",
       "Pesas M2",
       "Pesas M3",
-      "Básculas industriales"
-    ]
+      "Básculas industriales",
+    ],
   },
   {
     id: "temperature",
@@ -77,8 +77,8 @@ const calibrationTypes: CalibrationType[] = [
       "Autoclaves",
       "Baños María",
       "Hornos",
-      "Cámaras climáticas"
-    ]
+      "Cámaras climáticas",
+    ],
   },
   {
     id: "volume",
@@ -89,8 +89,8 @@ const calibrationTypes: CalibrationType[] = [
       "Pipetas",
       "Buretas",
       "Probetas graduadas",
-      "Cubicación de tanques"
-    ]
+      "Cubicación de tanques",
+    ],
   },
   {
     id: "pressure",
@@ -99,8 +99,8 @@ const calibrationTypes: CalibrationType[] = [
     equipment: [
       "Manómetros",
       "Transductores de presión",
-      "Calibradores de presión"
-    ]
+      "Calibradores de presión",
+    ],
   },
   {
     id: "dimensional",
@@ -111,8 +111,8 @@ const calibrationTypes: CalibrationType[] = [
       "Vernier",
       "Reglas metálicas",
       "Cintas métricas",
-      "Calibradores"
-    ]
+      "Calibradores",
+    ],
   },
   {
     id: "electricity",
@@ -122,19 +122,15 @@ const calibrationTypes: CalibrationType[] = [
       "Multímetros",
       "Pinzas amperimétricas",
       "Fuentes de alimentación",
-      "Calibradores de corriente"
-    ]
+      "Calibradores de corriente",
+    ],
   },
   {
     id: "force",
     title: "Fuerza",
     icon: forceIcon,
-    equipment: [
-      "Dinamómetros",
-      "Células de carga",
-      "Máquinas de ensayos"
-    ]
-  }
+    equipment: ["Dinamómetros", "Células de carga", "Máquinas de ensayos"],
+  },
 ];
 ---
 
@@ -143,28 +139,36 @@ const calibrationTypes: CalibrationType[] = [
     <!-- Encabezado -->
     <div class="max-w-3xl mx-auto text-center mb-12">
       <h2 class="font-heading text-3xl md:text-6xl mb-4">Nuestros Servicios</h2>
-      <p class="text-base md:text-lg">Ofrecemos servicios especializados para garantizar la precisión de sus equipos de medición.</p>
+      <p class="text-base md:text-lg">
+        Ofrecemos servicios especializados que apoyan el control y desempeño de
+        sus equipos e instrumentos de medición.
+      </p>
     </div>
 
     <!-- Selector de categoría -->
-    <div class="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-6 mb-16">
-      {serviceCategories.map((category) => (
-        <button
-          class={`flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-300 ${category.id === 'calibration' ? 'border-accent bg-muted text-accent hover:bg-blue-100' : 'border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 h-full'}`}
-          onclick={`showCategory('${category.id}')`}
-          data-aos="zoom-in" data-aos-duration="1500"
-        >
-          <Image 
-            src={category.icon} 
-            alt={category.title} 
-            class="h-12 w-12 mb-4"
-            width={48}
-            height={48}
-          />
-          <h3 class="text-xl font-semibold mb-2">{category.title}</h3>
-          <p class="text-sm text-center">{category.description}</p>
-        </button>
-      ))}
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-6 mb-16"
+    >
+      {
+        serviceCategories.map((category) => (
+          <button
+            class={`flex flex-col items-center justify-center p-6 rounded-xl border-2 transition-all duration-300 ${category.id === "calibration" ? "border-accent bg-muted text-accent hover:bg-blue-100" : "border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 h-full"}`}
+            onclick={`showCategory('${category.id}')`}
+            data-aos="zoom-in"
+            data-aos-duration="1500"
+          >
+            <Image
+              src={category.icon}
+              alt={category.title}
+              class="h-12 w-12 mb-4"
+              width={48}
+              height={48}
+            />
+            <h3 class="text-xl font-semibold mb-2">{category.title}</h3>
+            <p class="text-sm text-center">{category.description}</p>
+          </button>
+        ))
+      }
     </div>
 
     <!-- Contenido dinámico -->
@@ -172,62 +176,110 @@ const calibrationTypes: CalibrationType[] = [
       <!-- Sección Calibración (visible por defecto) -->
       <div id="calibrationContent">
         <div class="text-center mb-12">
-          <h3 class="font-heading text-2xl font-semibold mb-4">Magnitudes de Calibración</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">Seleccione la magnitud para ver los equipos que calibramos:</p>
+          <h3 class="font-heading text-2xl font-semibold mb-4">
+            Magnitudes de Calibración
+          </h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Seleccione la magnitud para ver los equipos que calibramos:
+          </p>
         </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {calibrationTypes.map((type) => (
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {
+            calibrationTypes.map((type) => (
               <button
-                class="flex flex-col items-center p-6 rounded-xl border border-gray-200 hover:border-accent hover:bg-blue-50 transition-all duration-300" data-aos="zoom-in" data-aos-duration="1800"
+                class="flex flex-col items-center p-6 rounded-xl border border-gray-200 hover:border-accent hover:bg-blue-50 transition-all duration-300"
+                data-aos="zoom-in"
+                data-aos-duration="1800"
                 onclick={`showEquipment('${type.id}')`}
               >
-                <Image 
-                  src={type.icon} 
-                  alt={type.title} 
+                <Image
+                  src={type.icon}
+                  alt={type.title}
                   class="h-10 w-10 mb-3 text-accent"
                   width={40}
                   height={40}
                 />
                 <span class="font-medium">{type.title}</span>
               </button>
-            ))}
-          </div>
+            ))
+          }
+        </div>
       </div>
 
       <!-- Sección Mantenimiento (oculta por defecto) -->
       <div id="maintenanceContent" class="hidden text-center">
         <div class="max-w-2xl mx-auto">
-          <Image 
-            src={maintenanceIcon} 
-            alt="Mantenimiento" 
+          <Image
+            src={maintenanceIcon}
+            alt="Mantenimiento"
             class="h-16 w-16 mx-auto mb-6"
             width={64}
             height={64}
           />
-          <h3 class="font-heading text-2xl font-semibold mb-4">Servicios de Mantenimiento</h3>
-          <p class="text-gray-600 mb-6">Ofrecemos servicios especializados de mantenimiento para:</p>
+          <h3 class="font-heading text-2xl font-semibold mb-4">
+            Servicios de Mantenimiento
+          </h3>
+          <p class="text-gray-600 mb-6">
+            Ofrecemos servicios especializados de mantenimiento para:
+          </p>
           <ul class="space-y-3 text-left inline-block">
             <li class="flex items-center">
-              <svg class="h-5 w-5 text-accent mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              <svg
+                class="h-5 w-5 text-accent mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
               </svg>
               Balanzas y básculas
             </li>
             <li class="flex items-center">
-              <svg class="h-5 w-5 text-accent mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              <svg
+                class="h-5 w-5 text-accent mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
               </svg>
               Instrumentos de medición
             </li>
             <li class="flex items-center">
-              <svg class="h-5 w-5 text-accent mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              <svg
+                class="h-5 w-5 text-accent mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
               </svg>
               Equipos de laboratorio
             </li>
             <li class="flex items-center">
-              <svg class="h-5 w-5 text-accent mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              <svg
+                class="h-5 w-5 text-accent mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
               </svg>
               Sistemas de medición industrial
             </li>
@@ -236,23 +288,38 @@ const calibrationTypes: CalibrationType[] = [
       </div>
 
       <!-- Modal para equipos -->
-      <div id="equipmentModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-opacity-50 transition-opacity duration-300">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-          <div class="inline-block align-bottom bg-background rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div
+        id="equipmentModal"
+        class="hidden fixed inset-0 z-50 overflow-y-auto bg-opacity-50 transition-opacity duration-300"
+      >
+        <div
+          class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+        >
+          <div
+            class="inline-block align-bottom bg-background rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          >
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div class="sm:flex sm:items-start">
-                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                  <h3 id="modalTitle" class="text-lg leading-6 font-medium text-gray-900 mb-4"></h3>
+                <div
+                  class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full"
+                >
+                  <h3
+                    id="modalTitle"
+                    class="text-lg leading-6 font-medium text-gray-900 mb-4"
+                  >
+                  </h3>
                   <div class="mt-2">
                     <ul id="equipmentList" class="space-y-2 text-gray-600"></ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-              <button 
-                type="button" 
-                class="mt-3 w-full inline-flex justify-center rounded-md border border-border shadow-sm px-4 py-2 bg-background text-base font-medium  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            <div
+              class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+            >
+              <button
+                type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-border shadow-sm px-4 py-2 bg-background text-base font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                 onclick="closeModal()"
               >
                 Cerrar
@@ -269,38 +336,38 @@ const calibrationTypes: CalibrationType[] = [
 <script is:inline>
   // Mostrar categoría seleccionada
   function showCategory(categoryId) {
-    if (categoryId === 'calibration') {
-      document.getElementById('calibrationContent').classList.remove('hidden');
-      document.getElementById('maintenanceContent').classList.add('hidden');
+    if (categoryId === "calibration") {
+      document.getElementById("calibrationContent").classList.remove("hidden");
+      document.getElementById("maintenanceContent").classList.add("hidden");
     } else {
-      document.getElementById('calibrationContent').classList.add('hidden');
-      document.getElementById('maintenanceContent').classList.remove('hidden');
+      document.getElementById("calibrationContent").classList.add("hidden");
+      document.getElementById("maintenanceContent").classList.remove("hidden");
     }
   }
 
   // Mostrar equipos en modal
   function showEquipment(typeId) {
     const type = {
-      'mass': 'Masa',
-      'temperature': 'Temperatura',
-      'volume': 'Volumen',
-      'pressure': 'Presión',
-      'dimensional': 'Dimensional',
-      'electricity': 'Electricidad',
-      'force': 'Fuerza'
+      mass: "Masa",
+      temperature: "Temperatura",
+      volume: "Volumen",
+      pressure: "Presión",
+      dimensional: "Dimensional",
+      electricity: "Electricidad",
+      force: "Fuerza",
     }[typeId];
-    
+
     const equipment = {
-      'mass': [
+      mass: [
         "Balanzas de Clase I",
         "Balanzas de Clase II",
         "Balanzas de Clase III",
         "Pesas M1",
         "Pesas M2",
         "Pesas M3",
-        "Básculas industriales"
+        "Básculas industriales",
       ],
-      'temperature': [
+      temperature: [
         "Termómetros digitales",
         "Termómetros de líquido en vidrio",
         "Estufas",
@@ -308,48 +375,45 @@ const calibrationTypes: CalibrationType[] = [
         "Autoclaves",
         "Baños María",
         "Hornos",
-        "Cámaras climáticas"
+        "Cámaras climáticas",
       ],
-      'volume': [
+      volume: [
         "Medidores volumétricos",
         "Pipetas",
         "Buretas",
         "Probetas graduadas",
-        "Cubicación de tanques"
+        "Cubicación de tanques",
       ],
-      'pressure': [
+      pressure: [
         "Manómetros",
         "Transductores de presión",
-        "Calibradores de presión"
+        "Calibradores de presión",
       ],
-      'dimensional': [
+      dimensional: [
         "Micrómetros",
         "Vernier",
         "Reglas metálicas",
         "Cintas métricas",
-        "Calibradores"
+        "Calibradores",
       ],
-      'electricity': [
+      electricity: [
         "Multímetros",
         "Pinzas amperimétricas",
         "Fuentes de alimentación",
-        "Calibradores de corriente"
+        "Calibradores de corriente",
       ],
-      'force': [
-        "Dinamómetros",
-        "Células de carga",
-        "Máquinas de ensayos"
-      ]
+      force: ["Dinamómetros", "Células de carga", "Máquinas de ensayos"],
     }[typeId];
 
-    document.getElementById('modalTitle').textContent = `Equipos para calibración de ${type}`;
-    
-    const equipmentList = document.getElementById('equipmentList');
-    equipmentList.innerHTML = '';
-    
-    equipment.forEach(item => {
-      const li = document.createElement('li');
-      li.className = 'flex items-start';
+    document.getElementById("modalTitle").textContent =
+      `Equipos para calibración de ${type}`;
+
+    const equipmentList = document.getElementById("equipmentList");
+    equipmentList.innerHTML = "";
+
+    equipment.forEach((item) => {
+      const li = document.createElement("li");
+      li.className = "flex items-start";
       li.innerHTML = `
         <svg class="h-5 w-5 text-accent mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -358,18 +422,26 @@ const calibrationTypes: CalibrationType[] = [
       `;
       equipmentList.appendChild(li);
     });
-    
-    document.getElementById('equipmentModal').classList.remove('hidden');
+
+    document.getElementById("equipmentModal").classList.remove("hidden");
   }
 
   // Cerrar modal
   function closeModal() {
-    document.getElementById('equipmentModal').classList.add('hidden');
+    document.getElementById("equipmentModal").classList.add("hidden");
   }
 </script>
 
 <style>
   .font-heading {
-    font-family: 'Readex Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family:
+      "Readex Pro",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
   }
 </style>
