@@ -8,10 +8,10 @@ interface Props {
   showNames?: boolean;
 }
 
-const { 
-  title = "Nuestro Equipo", 
+const {
+  title = "Nuestro Equipo",
   description = "El talento humano que hace posible la excelencia en nuestros servicios de calibración",
-  showNames = false
+  showNames = false,
 } = Astro.props;
 ---
 
@@ -24,30 +24,38 @@ const {
     </div>
 
     <!-- Foto del equipo -->
-    <div class="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-6"> 
-      <Image 
-        src={teamPhoto} 
-        alt="Equipo completo de CYAM S.R.L." 
+    <div
+      class="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-6"
+    >
+      <Image
+        src={teamPhoto}
+        alt="Equipo completo de CYAM S.R.L."
         class="w-full h-auto object-cover"
         loading="eager"
-        data-aos="zoom-in" data-aos-duration="1500"
+        data-aos="zoom-in"
+        data-aos-duration="1500"
       />
 
-    <!-- Texto descriptivo opcional -->
-    <div class="max-w-2xl mx-auto text-center">
-      <p>
-        En CYAM S.R.L. contamos con un equipo altamente capacitado y comprometido con la calidad en cada proceso de calibración.
-        Nuestros técnicos cuentan con certificaciones internacionales que garantizan la precisión de sus trabajos.
-      </p>
-      
-      <!-- Botón opcional -->
-      <div class="mt-8">
-        <a 
-          href="/aboutus" 
-          class="inline-flex py-3 px-8 items-center justify-center text-lg font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300"
-        >
-          Conoce más sobre nosotros
-        </a>
+      <!-- Texto descriptivo opcional -->
+      <div class="max-w-2xl mx-auto text-center">
+        <p>
+          “En CYAM S.R.L. la competencia técnica de nuestro equipo es uno de los
+          pilares fundamentales de nuestro servicio. Su formación continua,
+          experiencia comprobada y compromiso con el cumplimiento de la norma
+          NTP ISO/IEC 17025 garantizan resultados confiables, trazables y
+          respaldado s por procedimientos normalizados, en respuesta a los
+          requisitos de nuestros clientes.
+        </p>
+
+        <!-- Botón opcional -->
+        <div class="mt-8">
+          <a
+            href="/aboutus"
+            class="inline-flex py-3 px-8 items-center justify-center text-lg font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300"
+          >
+            Conoce más sobre nosotros
+          </a>
+        </div>
       </div>
     </div>
   </div>

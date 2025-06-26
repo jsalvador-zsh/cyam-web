@@ -1,79 +1,110 @@
 ---
 import { Image } from "astro:assets";
-import companyVideoPlaceholder from "../assets/images/video-placeholder.jpg";
 import Layout from "../layouts/Layout.astro";
-import teamPhoto from "../assets/images/equipo.png";
-
+import teamPhoto from "../assets/images/equipos/vernier-2.png";
 interface Props {
   title?: string;
   description?: string;
   videoUrl?: string;
 }
 
-const { 
-  title = "Nuestra Empresa", 
+const {
+  title = "Nuestra Empresa",
   description = "Desde nuestra fundación, nos hemos comprometido a ofrecer servicios de calibración y mantenimiento confiables y precisos para una amplia gama de equipos e instrumentos de medición. Nuestro equipo técnico se dedica a garantizar la calidad y exactitud de las mediciones, cumpliendo con los estándares más exigentes y normativas aplicables.",
-  videoUrl = "/video.mp4" 
+  videoUrl = "/video.mp4",
 } = Astro.props;
 ---
-<Layout
-    title="Sobre nosotros"
-    description=""
->
-<div class="py-16 bg-background/10" id="company-info">
-  <div class="container max-w-6xl mx-auto px-4">
-    <!-- Encabezado -->
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <h2 class="font-heading text-3xl md:text-6xl mb-4">{title}</h2>
-      <p class="text-base md:text-lg">{description}</p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <!-- Video -->
-      <div class="relative rounded-xl overflow-hidden shadow-lg" data-aos="fade-right" data-aos-duration="1500">
-      <Image 
-        src={teamPhoto} 
-        alt="Equipo completo de CYAM S.R.L." 
-        class="w-full h-auto object-cover"
-        loading="eager"
-        data-aos="zoom-in" data-aos-duration="1500"
-      />
+<Layout title="Sobre nosotros" description="">
+  <div class="py-16 bg-background/10" id="company-info">
+    <div class="container max-w-6xl mx-auto px-4">
+      <!-- Encabezado -->
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="font-heading text-3xl md:text-6xl mb-4">{title}</h2>
+        <p class="text-base md:text-lg">{description}</p>
       </div>
 
-      <!-- Misión y Visión -->
-      <div class="space-y-8" data-aos="fade-left" data-aos-duration="1500">
-        <!-- Misión -->
-        <div class="p-6 bg-background">
-          <div class="flex items-center mb-4">
-            <div class="bg-accent/10 p-2 rounded-full mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 class="font-heading text-2xl font-semibold">Nuestra Misión</h3>
-          </div>
-          <p>
-            Brindar servicios de calibración y mantenimiento de calidad excepcional. Nos comprometemos a garantizar mediciones precisas y confiables, así como a mantener equipos en óptimas condiciones de funcionamiento. A través de nuestro compromiso con la excelencia técnica y el servicio al cliente, buscamos ser el socio preferido de nuestros clientes, contribuyendo así al éxito y crecimiento de sus operaciones.
-          </p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <Image
+            src={teamPhoto}
+            alt="Equipo completo de CYAM S.R.L."
+            class="w-full h-auto object-cover rounded-2xl shadow-lg"
+            loading="eager"
+            data-aos="zoom-in"
+            data-aos-duration="1500"
+          />
 
-        <!-- Visión -->
-        <div class="p-6 bg-background">
-          <div class="flex items-center mb-4">
-            <div class="bg-accent/10 p-2 rounded-full mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
+        <!-- Misión y Visión -->
+        <div class="space-y-8" data-aos="fade-left" data-aos-duration="1500">
+          <!-- Misión -->
+          <div class="p-6 bg-background">
+            <div class="flex items-center mb-4">
+              <div class="bg-accent/10 p-2 rounded-full mr-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-accent"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="font-heading text-2xl font-semibold">
+                Nuestra Misión
+              </h3>
             </div>
-            <h3 class="font-heading text-2xl font-semibold">Nuestra Visión</h3>
+            <p>
+              Brindar servicios de calibración y mantenimiento técnico que
+              aseguren la confiabilidad de las mediciones y la funcionalidad de
+              los equipos, cumpliendo con métodos técnicamente válidos y
+              requisitos normativos aplicables. Nuestro propósito es ser un
+              soporte técnico confiable para nuestros clientes, aportando al
+              control de sus procesos mediante resultados válidos y trazables.
+            </p>
           </div>
-          <p class="text-gray-700">
-            Ser reconocidos como el líder indiscutible en servicios de calibración en el Perú. Nos esforzamos por establecer los más altos estándares de calidad y excelencia en cada aspecto de nuestro trabajo.
-          </p>
+
+          <!-- Visión -->
+          <div class="p-6 bg-background">
+            <div class="flex items-center mb-4">
+              <div class="bg-accent/10 p-2 rounded-full mr-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-accent"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-heading text-2xl font-semibold">
+                Nuestra Visión
+              </h3>
+            </div>
+            <p class="text-gray-700">
+              Consolidarnos como laboratorio de referencia en servicios de
+              calibración a nivel nacional, destacando por nuestra competencia
+              técnica, cumplimiento normativo y compromiso con la mejora
+              continua de nuestros procesos y capacidades.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </Layout>
