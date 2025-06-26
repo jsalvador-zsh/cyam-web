@@ -35,7 +35,7 @@ export const headerData: HeaderData = {
     },
     {
       text: "Quejas",
-      href: "#complaints",
+      href: "/complaints",
     }
   ],
   ctaButton: {
