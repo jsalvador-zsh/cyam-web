@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+
+import tratamientoQuejas from "../assets/images/quejas.png";
+---
+
+<Layout
+    title="Quejas | CYAM S.R.L."
+    description="Más de 10 años garantizando la exactitud en calibración de equipos de medición industrial con trazabilidad internacional."
+>
+    <div class="py-16" id="services">
+        <div class="container max-w-8xl mx-auto px-4">
+            <Image
+                src={tratamientoQuejas}
+                alt="Tratamiento de Quejas y Reclamos"
+                class="w-full h-auto object-cover mb-8"
+                loading="eager"
+                data-aos="fade-up"
+                data-aos-duration="1500"
+            />
+        </div>
+    </div>
+</Layout>
