@@ -1,0 +1,17 @@
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+# Configuración para Netlify Forms
+[build.environment]
+  NODE_VERSION = "22"
+
+# Redirecciones personalizadas (opcional)
+[[redirects]]
+  from = "/gracias"
+  to = "/trabaja-con-nosotros?success=true"
+  status = 200
+
+# Configuración de formularios
+[forms]
+  # Configuración global para todos los formularios

@@ -6,13 +6,11 @@ import Layout from "../layouts/Layout.astro";
 interface Props {
     title?: string;
     description?: string;
-    contactEmail?: string;
-    emailSubject?: string;
 }
 
 const {
     title = "Únete a Nuestro Equipo",
-    description = "En CYAM S.R.L. estamos siempre buscando talentos apasionados por la metrología y calibración.",
+    description = "En CYAM S.R.L. estamos siempre buscando talentos apasionados por la metrología.",
 } = Astro.props;
 ---
 
@@ -30,21 +28,37 @@ const {
                     </h2>
                     <p class="text-base md:text-lg">{description}</p>
                 </div>
-                <!-- Formulario -->
+
+                <!-- Mensaje de estado -->
+                <div id="statusMessage" class="hidden mb-6 p-4 rounded-lg text-center"></div>
+
+                <!-- Formulario con Netlify Forms -->
                 <form
-                    class=""
+                    name="job-application"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    enctype="multipart/form-data"
                     id="jobApplicationForm"
-                    onsubmit="return processForm(event)"
+                    onsubmit="return handleSubmit(event)"
                 >
+                    <!-- Campo oculto para identificar el formulario -->
+                    <input type="hidden" name="form-name" value="job-application" />
+                    
+                    <!-- Campo honeypot para anti-spam (oculto) -->
+                    <div class="hidden">
+                        <label>No llenes este campo si eres humano: 
+                            <input name="bot-field" />
+                        </label>
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center my-16">
                         <div class="space-y-8">
                             <!-- Nombre -->
                             <div>
-                                <label
-                                    for="name"
-                                    class="block text-sm font-medium mb-1"
-                                    >Nombre Completo *</label
-                                >
+                                <label for="name" class="block text-sm font-medium mb-1">
+                                    Nombre Completo *
+                                </label>
                                 <input
                                     type="text"
                                     id="name"
@@ -56,11 +70,9 @@ const {
 
                             <!-- Email -->
                             <div>
-                                <label
-                                    for="email"
-                                    class="block text-sm font-medium mb-1"
-                                    >Email *</label
-                                >
+                                <label for="email" class="block text-sm font-medium mb-1">
+                                    Email *
+                                </label>
                                 <input
                                     type="email"
                                     id="email"
@@ -72,11 +84,9 @@ const {
 
                             <!-- Teléfono -->
                             <div>
-                                <label
-                                    for="phone"
-                                    class="block text-sm font-medium mb-1"
-                                    >Teléfono *</label
-                                >
+                                <label for="phone" class="block text-sm font-medium mb-1">
+                                    Teléfono *
+                                </label>
                                 <input
                                     type="tel"
                                     id="phone"
@@ -86,13 +96,25 @@ const {
                                 />
                             </div>
 
+                            <!-- Mensaje adicional -->
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-1">
+                                    Mensaje adicional (opcional)
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="3"
+                                    class="w-full px-4 py-3 border border-border rounded-2xl focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-300"
+                                    placeholder="Cuéntanos por qué te interesa trabajar con nosotros..."
+                                ></textarea>
+                            </div>
+
                             <!-- CV -->
                             <div class="md:col-span-2">
-                                <label
-                                    for="cv"
-                                    class="block text-sm font-medium mb-1"
-                                    >Adjuntar CV (PDF) *</label
-                                >
+                                <label for="cv" class="block text-sm font-medium mb-1">
+                                    Adjuntar CV (PDF) *
+                                </label>
                                 <div class="mt-1 flex items-center">
                                     <input
                                         type="file"
@@ -106,32 +128,21 @@ const {
                                         for="cv"
                                         class="flex-1 px-4 py-3 border border-border rounded-2xl cursor-pointer hover:bg-muted transition-colors duration-200"
                                     >
-                                        <span id="fileName" class=""
-                                            >Seleccionar archivo...</span
-                                        >
+                                        <span id="fileName">Seleccionar archivo...</span>
                                     </label>
                                     <button
                                         type="button"
                                         onclick="document.getElementById('cv').click()"
                                         class="ml-3 inline-flex items-center px-4 py-3 border border-transparent text-sm font-medium rounded-full hover:cursor-pointer text-background bg-accent hover:bg-accent/80 transition-colors duration-300"
                                     >
-                                        <svg
-                                            class="-ml-1 mr-2 h-5 w-5"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                                clip-rule="evenodd"></path>
+                                        <svg class="-ml-1 mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                         </svg>
                                         Examinar
                                     </button>
                                 </div>
-                                <p class="mt-1 text-sm">
-                                    Formatos aceptados: PDF, DOC, DOCX (Máx.
-                                    5MB)
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Formatos aceptados: PDF, DOC, DOCX (Máx. 10MB)
                                 </p>
                             </div>
                         </div>
@@ -146,75 +157,149 @@ const {
                             data-aos-duration="1500"
                         />
                     </div>
+                    
                     <!-- Botón de envío -->
                     <div class="text-center">
                         <button
                             type="submit"
-                            class="inline-flex py-3 px-8 items-center justify-center text-lg font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300 hover:cursor-pointer"
+                            id="submitBtn"
+                            class="inline-flex py-3 px-8 items-center justify-center text-lg font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300 hover:cursor-pointer disabled:opacity-50"
                         >
-                            Enviar Solicitud
-                            <svg
-                                class="ml-2 -mr-1 w-5 h-5"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
+                            <span id="btnText">Enviar Solicitud</span>
+                            <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
                     </div>
                 </form>
+
+                <!-- Página de agradecimiento (opcional) -->
+                <div id="thankYouMessage" class="hidden text-center py-16">
+                    <div class="max-w-2xl mx-auto">
+                        <div class="mb-6">
+                            <svg class="mx-auto h-16 w-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">¡Solicitud Enviada!</h3>
+                        <p class="text-lg text-gray-600 mb-6">
+                            Gracias por tu interés en formar parte de nuestro equipo. 
+                            Hemos recibido tu CV y te contactaremos pronto.
+                        </p>
+                        <button 
+                            onclick="resetForm()"
+                            class="inline-flex py-2 px-6 items-center justify-center text-sm font-medium text-accent hover:text-background border border-accent hover:bg-accent rounded-full transition-all duration-300"
+                        >
+                            Enviar otra solicitud
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </Layout>
-<!-- Script para manejar el formulario -->
+
+<!-- Script para manejar Netlify Forms -->
 <script is:inline>
+    const form = document.getElementById('jobApplicationForm');
+    const fileInput = document.getElementById('cv');
+    const fileName = document.getElementById('fileName');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const statusMessage = document.getElementById('statusMessage');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    // Función para mostrar mensajes de estado
+    function showStatus(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = `mb-6 p-4 rounded-lg text-center ${
+            type === 'success' 
+                ? 'bg-green-100 text-green-800 border border-green-200' 
+                : type === 'info'
+                ? 'bg-blue-100 text-blue-800 border border-blue-200'
+                : 'bg-red-100 text-red-800 border border-red-200'
+        }`;
+        statusMessage.classList.remove('hidden');
+        
+        setTimeout(() => {
+            statusMessage.classList.add('hidden');
+        }, 5000);
+    }
+
+    // Función para formatear tamaño de archivo
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
     // Mostrar nombre de archivo seleccionado
-    document.getElementById("cv").addEventListener("change", function (e) {
-        const fileName = e.target.files[0]
-            ? e.target.files[0].name
-            : "Seleccionar archivo...";
-        document.getElementById("fileName").textContent = fileName;
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            fileName.textContent = file.name;
+            
+            // Validar tamaño (10MB máximo)
+            if (file.size > 10 * 1024 * 1024) {
+                showStatus(`Archivo muy grande (${formatFileSize(file.size)}). Máximo 10MB permitido.`, 'error');
+                fileInput.value = '';
+                fileName.textContent = 'Seleccionar archivo...';
+            } else {
+                showStatus(`Archivo seleccionado: ${formatFileSize(file.size)}`, 'success');
+            }
+        } else {
+            fileName.textContent = 'Seleccionar archivo...';
+        }
     });
 
-    // Procesar formulario (mailto con datos)
-    function processForm(event) {
-        event.preventDefault();
-
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const phone = form.phone.value;
-        const cvFile = form.cv.files[0];
-        const contactEmail = "jsalvador@unsa.edu.pe";
-        const emailSubject = "Postulación a Bolsa de Trabajo CYAM";
-
+    // Manejar envío del formulario
+    function handleSubmit(event) {
+        const file = fileInput.files[0];
+        
         // Validar archivo
-        if (cvFile && cvFile.size > 5 * 1024 * 1024) {
-            alert("El archivo es demasiado grande (máximo 5MB)");
+        if (!file) {
+            showStatus('Por favor selecciona tu CV.', 'error');
+            event.preventDefault();
+            return false;
+        }
+        
+        if (file.size > 10 * 1024 * 1024) {
+            showStatus('El archivo es demasiado grande. Máximo 10MB permitido.', 'error');
+            event.preventDefault();
             return false;
         }
 
-        // Crear cuerpo del email
-        const body = `Nombre: ${name}%0AEmail: ${email}%0ATeléfono: ${phone}%0A%0AMensaje: Adjunto mi CV para consideración en la bolsa de trabajo.`;
+        // Cambiar estado del botón
+        submitBtn.disabled = true;
+        btnText.textContent = 'Enviando...';
+        showStatus('Enviando tu solicitud...', 'info');
 
-        // Crear enlace mailto
-        let mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(emailSubject)}&body=${body}`;
+        // Netlify manejará el envío automáticamente
+        // Si hay un error, se mostrará en la página de error de Netlify
+        return true;
+    }
 
-        // Abrir cliente de email
-        window.location.href = mailtoLink;
+    // Función para resetear el formulario
+    function resetForm() {
+        form.reset();
+        fileName.textContent = 'Seleccionar archivo...';
+        submitBtn.disabled = false;
+        btnText.textContent = 'Enviar Solicitud';
+        form.style.display = 'block';
+        thankYouMessage.classList.add('hidden');
+        statusMessage.classList.add('hidden');
+    }
 
-        // Opcional: Resetear formulario
-        setTimeout(() => {
-            form.reset();
-            document.getElementById("fileName").textContent =
-                "Seleccionar archivo...";
-        }, 1000);
+    // Asignar funciones globalmente
+    window.handleSubmit = handleSubmit;
+    window.resetForm = resetForm;
 
-        return false;
+    // Detectar si venimos de un envío exitoso (opcional)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        form.style.display = 'none';
+        thankYouMessage.classList.remove('hidden');
     }
 </script>
