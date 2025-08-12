@@ -36,8 +36,8 @@ const {
                 <form
                     name="job-application"
                     method="POST"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
+                    netlify
+                    netlify-honeypot="bot-field"
                     enctype="multipart/form-data"
                     id="jobApplicationForm"
                     onsubmit="return handleSubmit(event)"
@@ -277,7 +277,7 @@ const {
         showStatus('Enviando tu solicitud...', 'info');
 
         // Netlify manejará el envío automáticamente
-        // Si hay un error, se mostrará en la página de error de Netlify
+        // No prevenir el comportamiento por defecto para que Netlify procese el form
         return true;
     }
 
